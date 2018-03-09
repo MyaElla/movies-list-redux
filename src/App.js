@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import { connect } from "react-redux";
 import { increment, decrement } from "./redux/actions";
 import "./App.css";
+import Movies from "./containers/Movies";
 
 class App extends Component {
   render() {
@@ -11,6 +12,7 @@ class App extends Component {
         <button onClick={this.props.increment}>+</button>
         {this.props.count}
         <button onClick={this.props.decrement}>-</button>
+        <Movies />
       </div>
     );
   }

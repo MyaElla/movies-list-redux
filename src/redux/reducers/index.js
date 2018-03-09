@@ -1,4 +1,5 @@
 import * as TYPES from "../actions";
+import { combineReducers } from "redux";
 
 function count(state = {}, action) {
   switch (action.type) {
@@ -10,4 +11,16 @@ function count(state = {}, action) {
   return state;
 }
 
-export default count;
+function fetchMovies(state = {}, action) {
+  switch (action.type) {
+    case TYPES.FETCHMOVIES:
+      return { ...state, movies: action.payload };
+  }
+  return state;
+}
+
+const rootReducer = combineReducers({
+  count,
+  movies: fetchMovies
+});
+export default rootReducer;
