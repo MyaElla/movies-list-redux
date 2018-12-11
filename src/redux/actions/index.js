@@ -17,12 +17,13 @@ export function decrement() {
 export function fetchMovies(url) {
   return dispatch => {
     fetch(url)
-      .then(res => res.json())
-      .then(data =>
+      .then(res => (res.ok ? res.json() : Promise.reject(res)))
+      .then(data => {
         dispatch({
           type: FETCHMOVIES,
           payload: data
-        })
-      );
+        });
+      })
+      .catch(err => console.log(err));
   };
 }
