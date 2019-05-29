@@ -15,7 +15,7 @@ class Movies extends Component {
         <h2>Movies</h2>
         <ul className="movies">
           {this.props.movies.map(movie => (
-            <li>{movie}</li>
+            <li key={movie}>{movie}</li>
           ))}
         </ul>
       </div>
