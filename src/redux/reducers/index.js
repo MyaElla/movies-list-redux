@@ -1,26 +1,34 @@
 import * as TYPES from "../actions";
 import { combineReducers } from "redux";
 
-function count(state = {}, action) {
+function count(state = 0, action) {
+  console.log(state);
+
   switch (action.type) {
     case TYPES.INCREASE:
-      return { count: state.count + 1 };
+      return state + 1;
+
     case TYPES.DECREASE:
-      return { count: state.count - 1 };
+      return state - 1;
+
+    default:
+      return state;
   }
-  return state;
 }
 
-function fetchMovies(state = {}, action) {
+function movies(state = [], action) {
   switch (action.type) {
     case TYPES.FETCHMOVIES:
-      return { ...state, movies: action.payload };
+      return [...state, ...action.payload];
+
+    default:
+      return state;
   }
-  return state;
 }
 
 const rootReducer = combineReducers({
   count,
-  movies: fetchMovies
+  movies
 });
+
 export default rootReducer;

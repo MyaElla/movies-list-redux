@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import { connect } from "react-redux";
 import { increment, decrement } from "./redux/actions";
 import "./App.css";
@@ -7,11 +6,15 @@ import Movies from "./containers/Movies";
 
 class App extends Component {
   render() {
+    console.log("this.props.count", this.props.count);
+
     return (
       <div className="App">
-        <button onClick={this.props.increment}>+</button>
-        {this.props.count}
+        <h2>Count</h2>
         <button onClick={this.props.decrement}>-</button>
+        {this.props.count}
+        <button onClick={this.props.increment}>+</button>
+        <hr />
         <Movies />
       </div>
     );
@@ -20,7 +23,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    count: state.count
+    count: state.count,
+    movies: state.movies
   };
 };
 
@@ -29,4 +33,7 @@ const mapDispatchToProps = {
   decrement
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
